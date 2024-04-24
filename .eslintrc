@@ -1,0 +1,6 @@
+{
+  "extends": "@murongg",
+  "rules": {
+    "no-console": "off"
+  }
+}
