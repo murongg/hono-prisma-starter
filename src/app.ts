@@ -4,6 +4,7 @@ import { NODE_ENV, PORT } from './config'
 import { logger } from './utils/logger'
 import { LoggerMiddleware } from './middlewares/logger.middleware'
 import { ErrorMiddleware } from './middlewares/error.middleware'
+import { UserRoute } from './routes/users.route'
 
 export class App {
   public app: Hono
@@ -15,6 +16,8 @@ export class App {
     this.env = NODE_ENV || 'development'
     this.port = PORT ? Number(PORT) : 3000
     this.initializeMiddlewares()
+    this.initializeErrorHandling()
+    this.initializeRoutes()
   }
 
   public listen() {
@@ -35,6 +38,15 @@ export class App {
 
   private initializeMiddlewares() {
     this.app.use(LoggerMiddleware())
+  }
+
+  private initializeErrorHandling() {
     this.app.onError(ErrorMiddleware())
+  }
+
+  private initializeRoutes() {
+    // eslint-disable-next-line no-new
+    new UserRoute(this.app)
+    // console.log(this.app.routes)
   }
 }

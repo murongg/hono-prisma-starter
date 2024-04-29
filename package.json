@@ -1,12 +1,26 @@
 {
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsx watch src/server.ts",
-    "build": "swc src -d dist --source-maps --copy-files"
+    "build": "swc src -d dist --source-maps --copy-files",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "cross-env NODE_ENV=development vitest",
+    "prisma:init": "prisma init",
+    "prisma:migrate": "dotenv -e .env.development -- prisma migrate dev --preview-feature",
+    "prisma:generate": "prisma generate"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.0",
+    "@prisma/client": "^5.13.0",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "hono": "^4.2.7",
+    "reflect-metadata": "^0.2.2",
+    "typedi": "^0.10.0",
+    "vitest": "^1.5.2",
     "winston": "^3.13.0",
     "winston-daily-rotate-file": "^5.0.0"
   },
@@ -14,7 +28,14 @@
     "@murongg/eslint-config": "^0.2.1",
     "@swc/cli": "^0.3.12",
     "@swc/core": "^1.5.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
+    "@types/supertest": "^6.0.2",
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^7.4.1",
+    "prisma": "^5.13.0",
+    "tslib": "^2.6.2",
+    "tsx": "^4.7.1",
+    "vite": "^5.2.10"
   }
 }

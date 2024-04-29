@@ -1,14 +1,15 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "target": "esnext",
+    "lib": ["esnext", "esnext.asynciterable"],
     "typeRoots": ["node_modules/@types"],
-    "strict": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
     "pretty": true,
     "sourceMap": true,
     "declaration": true,
@@ -18,9 +19,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "importHelpers": true,
-    "types": [
-      "node"
-    ],
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
@@ -32,9 +30,12 @@
       "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
+      "@utils/*": ["utils/*"],
+      "@constants/*": ["constants/*"],
+      "@contracts/*": ["contracts/*"],
+      "@schedule/*": ["schedule/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+  "exclude": ["node_modules", "src/http", "src/logs"]
 }
